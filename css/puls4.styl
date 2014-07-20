@@ -1,0 +1,46 @@
+azul= #22BCE0
+gris_oscuro = #444
+
+body
+	background #E8E8E8
+	color gris_oscuro
+	font-family Arial
+	font-size 16px
+
+header
+	background gris_oscuro
+	color white
+	padding 0.5em /* 1 em equivalente a 16px, el tamaño es relativo a la fuente */
+	.logo
+		/*al manipular imagenes, usamos pixeles*/
+		border-right 1px solid azul
+		width 60px
+		/*dentro de la etiqueta logo, le doi tamaño a mi logo*/
+		img
+			width 52px
+
+	.titular
+		/*margin(top, derecha,bot, izquierda)*/
+		margin -10px 80px 0 70px /* seria 60 +10 para correr */
+
+		.titulo
+			font-size 18px
+			font-weight normal
+			marin 0
+			padding 0
+	.usuario
+		.avatar
+			img
+				/*empequeñecemos la imagen y la redondeamos*/
+				width 50px
+				border-radius 50%		
+
+nav
+	background azul
+
+/*clases para hacer flotar*/
+.left
+	float left
+
+.right
+	float right
