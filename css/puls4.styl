@@ -1,5 +1,22 @@
 azul= #22BCE0
 gris_oscuro = #444
+gris_texto = #7A7A7A
+naranja = #DD4F24 
+
+/*codigo de mis iconos vectoriales*/
+@font-face {
+	font-family: 'iconitos';
+	src:url('../fonts/icomoon.eot?ft7kco');
+	src:url('../fonts/icomoon.eot?#iefixft7kco') format('embedded-opentype'),
+		url('../fonts/icomoon.woff?ft7kco') format('woff'),
+		url('../fonts/icomoon.ttf?ft7kco') format('truetype'),
+		url('../fonts/icomoon.svg?ft7kco#icomoon') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+a
+	color naranja /*todas las a tendran por defecto color naranja*/
 
 body
 	background #E8E8E8
@@ -7,13 +24,36 @@ body
 	font-family Arial
 	font-size 16px
 
+footer
+	/*nuestro pie de pagina*/
+	background naranja
+	color rgba(white,0.5)
+	padding 1em 0 /*el segundo cero hace que se mueva con el resto*/
+	text-align center /*centra el texto*/
+	width 100%
+	h3
+		font-size 14px
+		font-weight normal
+
+		strong
+			display block /*hace salto de linea*/
+		.mejor
+			&:before
+			&:after
+				content " - "
+
 header
 	background gris_oscuro
+	box-shadow 0 5px 0 rgba(0,0,0,0.2)/*sombra de abajo, agregamos z-index*/
 	color white
 	padding 0.5em /* 1 em equivalente a 16px, el tamaño es relativo a la fuente */
+	position relative /*todos los objetos dentro del header, vana tomar como (0,0) al header*/
+	z-index 1
+	
 	.logo
 		/*al manipular imagenes, usamos pixeles*/
 		border-right 1px solid azul
+		float left
 		width 60px
 		/*dentro de la etiqueta logo, le doi tamaño a mi logo*/
 		img
@@ -23,20 +63,192 @@ header
 		/*margin(top, derecha,bot, izquierda)*/
 		margin -10px 80px 0 70px /* seria 60 +10 para correr */
 
+		.filtro
+			color azul
+			font-size 14px
+			font-weight bold
+			font-style italic
+			text-decoration none /*quita subrayado*/
+
+		.publicar
+			background naranja
+			color white
+			float right
+			font-style italic
+			margin -7px 1em 0 0
+			padding 0.2em 0.5em /*hacia arriba y hacia los lados*/
+			text-decoration none
+			text-shadow 1px 1px 0px black /*sombra en x, en y cuanto*/
+
+			&:before
+				display inline-block
+				content "\e600"
+				font-family "iconitos"
+				margin 0 3px 0 0
+
 		.titulo
 			font-size 18px
 			font-weight normal
 			marin 0
 			padding 0
 	.usuario
+		position absolute
+		right 10px
+		top 10px
 		.avatar
+			margin 0 1.1em 0 0
+			position relative
+			z-index 2 /*permite modificar por capas*/
 			img
 				/*empequeñecemos la imagen y la redondeamos*/
 				width 50px
-				border-radius 50%		
+				border-radius 50%
+		.flechita
+			background naranja
+			color white /*texto color blanco*/
+			display block
+			padding 2px
+			position absolute
+			right 0
+			top 15px
+			text-align right /*alineo a la derecha*/		
+			text-decoration none
+			width 50%
+
+			&:after
+				display inline-block
+				margin 0 0 0 0
+				font-family "iconitos"
+				content "\e602"
+				text-shadow 1px 1px 0px black
 
 nav
 	background azul
+	border-left 15px solid white
+	position relative
+	
+	&:before
+		/*flecha izquierda del navegador*/
+		border-bottom 20px solid transparent
+		border-left 7px solid white
+		border-top 20px solid transparent
+		content ""
+		position absolute
+		top 0
+		left 0
+
+	.menu
+		height 40px /*alto de las palabras*/
+		line-height 40px /*alto de la caja y barra vertical*/
+		margin 0
+		padding 0 /*se coloca pues trae un padding por defecto*/
+		overflow-x auto
+		white-space nowrap /*barra horizontal*/
+		li
+			display inline-block /*me deja el menu en linea*/
+
+			a
+				color white
+				display inline-block
+				margin 0 0.5em
+				padding 0 0.2em
+				text-decoration none
+
+.posts
+	padding 0.5em
+
+	.post
+		background white
+		border-radius 0 0 0.5em 0.5em
+		box-shadow 2px 2px 10px rgba(black,0.5)
+		color gris_texto
+		margin-bottom 1em
+	
+	.acciones
+		border-top 3px solid azul
+		padding 0.5em
+		overflow hidden/*para que no se corte mi caja*/
+		.datos
+			float right
+
+			.comentarios
+				background gris_oscuro
+				border-radius 3px
+				color white
+				margin 0 1em 0 0
+				padding 2px 5px
+				text-decoration none
+			.estrellita
+				text-decoration none
+				&:after
+					font-family "iconitos"
+					color yellow
+					content:"\e601"
+					
+
+		.votos
+			float left
+
+			.down
+			.up
+				text-decoration none
+
+			.down
+				color red
+				&:before
+					/*agregando flecha*/
+					font-family "iconitos"
+					font-size 1.5em
+					content "\e602"
+					vertical-align bottom
+
+			.up
+				color green
+				&:before
+					/*agregando flecha*/
+					font-family "iconitos"
+					font-size 1.5em
+					content "\e603"
+					vertical-align bottom
+
+	.descripcion
+		color gris_texto
+		
+		.detalles
+			height 160px
+			margin-left 130px
+
+			.autor
+				margin 0.5em 0 1.5em 0
+
+			.fecha
+				float right
+				margin 0 1em 0 0
+
+			.tag
+				background azul
+				border-radius 0.5em
+				color white
+				padding 0.2em 0.5em
+				text-decoration none
+
+
+			.titulo
+				color gris_oscuro
+				font-size 18px
+				font-style italic
+				margin 0
+				padding 0.5em 0.5em 0 0
+
+		.imagen
+			float left
+			margin 0
+			img
+				height 160px
+				vertical-align top
+				width 120px
+			
+
 
 /*clases para hacer flotar*/
 .left
@@ -44,3 +256,26 @@ nav
 
 .right
 	float right
+
+
+/*HACIENDOLO RESPONSIVE DESIGN*/
+@media screen and (min-width: 768px)
+	header
+		.titular
+			.publicar
+				padding-left 3em
+				position relative
+				&:before
+					left 0
+					font-size 2em
+					position absolute
+					top -5px
+	.posts
+		.post
+			display inline-block
+			width 46%
+			vertical-align top
+			&:nth-child(odd)
+				margin-right 2%
+
+	
