@@ -9,6 +9,7 @@
 	<!-- se saca type, es rebundante -->
 	<link rel="stylesheet" href="css/normalize.css"/>
 	<link rel="stylesheet" href="css/puls4.css"/>
+	<script src="jquery-2.1.1.min.js"></script>
 </head>
 <!-- se ocupan solamente etiquetas semanticas ej: header, nav -->
 <body>
@@ -48,6 +49,21 @@
 			<li><a href="#">CSS3</a></li>
 		</ul>
 	</nav>
+	<form action="">
+		<p>
+			<label for="titulo">Titulo</label>
+			<input placeholder="Ingrese titulo" id="titulo" type="text" name="titulo">
+		</p>
+		<p>
+			<label for="autor">Autor</label>
+			<input  id="autor" type="text" name="autor">
+		</p>
+		<p>
+			<label for="tag">Tag</label>
+			<input id="tag" type="text" name="tag">
+		</p>
+		<input value="publicar" type="submit"/>
+	</form>
 	<section class="posts">
 		<article class="post">
 			<div class="descripcion">
@@ -263,5 +279,67 @@
 			</span>
 		</h3>
 	</footer>
+	<script>
+		
+	$(function(){
+		$('.publicar').on('click', mostrarFormulario);
+
+		function mostrarFormulario(){
+			$('form').slideToggle();/*hace que con el mismo boton aparezca y desaparezca*/
+		}
+		/*recibiremos los parametros*/
+		$('form').on('submit',procesarFormulario);
+		function procesarFormulario(ev){
+			ev.preventDefault();/*captura el evento del boton,(no recara la pagina)*/
+
+			var titulo = $('input[name=titulo]').val();
+			var autor = $('input[name=autor]').val();
+			var tag = $('input[name=tag]').val();
+
+			var template = '<article class="post"> \
+			<div class="descripcion"> \
+				<figure class="imagen"> \
+					<img src="imagenes/foto.jpg"/> \
+				</figure> \
+				<div class="detalles"> \
+					<h2 class="titulo"> \
+						'+titulo+' \
+					</h2> \
+					<p class="autor"> \
+						por <a href="#">'+autor+'</a> \
+					</p> \
+					<a class="tag" href="">'+tag+'</a> \
+					<p class="fecha">hace <strong>0</strong>min</p> \
+					<!--la etiqueta strong es para resaltar--> \
+				</div> \
+			</div> \
+			<div class="acciones"> \
+				<!--la dividimos en dos areas, el area de los votos y el area de los datos--> \
+				<div class="votos"> \
+					<a class="up" href="#"></a> \
+					<span class="total">0</span> <!--el numero de votos--> \
+					<a class="down" href="#"></a> \
+				</div> \
+				<div class="datos"> \
+					<a class="comentarios" href="#"> \
+						0 \
+					</a> \
+					<a class="estrellita" href="#"> \
+						 \
+					</a> \
+				</div> \
+			</div> \
+		</article>';
+			/*$('.posts').prepend(template); /* Crea el template y lo agrega */
+			$('.posts').prepend($(template).fadeIn(function(){
+				$(this).css('display', 'inline-block');
+				/*se agrega con efecto*/
+			})); 
+			$('input[type=text]').val('');/*limpia formulario*/
+			$('form').slideUp();/*esconde el formulario*/
+		}
+	})
+
+	</script>
 </body>
 </html>
